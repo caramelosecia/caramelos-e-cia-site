@@ -118,6 +118,9 @@ footer{background:var(--preto);color:#eee;padding:48px 0 36px}
 .rodape .marca span{color:#fff}
 .rodape .marca img{background:#fff;border-radius:50%}
 .rodape small{color:#aaa}
+.redes{width:100%;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;padding-top:16px;border-top:1px solid #333}
+.redes a{color:#bbb;text-decoration:none}
+.redes a:hover{color:var(--laranja)}
 
 .view{display:none}.view.on{display:block}
 
@@ -221,8 +224,14 @@ footer{background:var(--preto);color:#eee;padding:48px 0 36px}
     <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
       <a href="#blog" style="text-decoration:none">Blog</a>
       <a href="#ofertas" data-ofertas-link style="text-decoration:none">Grupo de ofertas</a>
-      <a id="insta" href="#" style="text-decoration:none;display:none" target="_blank" rel="noopener">Instagram</a>
     </div>
+    <nav class="redes" aria-label="Redes sociais">
+      <a href="https://www.instagram.com/caramelosecia" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@carameloscia" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://x.com/caramelosecia" target="_blank" rel="noopener">X</a>
+      <a href="https://www.youtube.com/@caramelosecia" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://br.pinterest.com/carameloscia" target="_blank" rel="noopener">Pinterest</a>
+    </nav>
     <small>© <span id="ano"></span> Caramelos e Cia • Conteúdo informativo. Em caso de dúvida sobre a saúde do seu pet, consulte um médico-veterinário.</small>
   </div>
 </footer>
@@ -314,7 +323,6 @@ function aplicarConfig(){
   });
   const nav=$("[data-ofertas-nav]");if(nav){if(u){nav.href=u;nav.target="_blank";nav.rel="noopener"}}
   $("#nota-ofertas").textContent=u?(c.ofertas_plataforma?`Grupo no ${c.ofertas_plataforma}. É grátis e você sai quando quiser.`:"É grátis e você sai quando quiser."):"O link do grupo será liberado em breve!";
-  if(c.instagram_url){const i=$("#insta");i.href=c.instagram_url;i.style.display=""}
 }
 
 function rota(){
