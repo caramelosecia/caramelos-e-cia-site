@@ -145,7 +145,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
 <body>
 <header>
   <div class="wrap nav">
-    <a class="marca" href="/"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
+    <a class="marca" href="/" aria-label="Caramelos e Cia: página inicial"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
     <nav class="menu">
       {nav("Início", "/", "inicio")}
       {nav("Blog", "/blog/", "blog")}
@@ -158,7 +158,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
 </main>
 <footer>
   <div class="wrap rodape">
-    <a class="marca" href="/"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
+    <a class="marca" href="/" aria-label="Caramelos e Cia: página inicial"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
     <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
       <a href="/blog/" style="text-decoration:none">Blog</a>
       <a {of} style="text-decoration:none">Grupo de ofertas</a>
