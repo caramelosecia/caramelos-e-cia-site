@@ -10,7 +10,7 @@
       "slug": "por-que-meu-gato-mia-tanto",
       "titulo": "Por que meu gato mia tanto?",
       "resumo": "Entenda os principais motivos dos miados e saiba quando o miado em excesso merece atenção.",
-      "categoria": "Gatos",
+      "categoria": "Comportamento",
       "data": "2026-11-17",
       "capa": "img/foto-gato-mia.jpg",
       "corpo": "Uma curiosidade que pouca gente conhece: gatos adultos quase não miam entre si. O miado é, principalmente, uma forma de se comunicar com a gente. Por isso, quando o seu gato mia, ele está tentando te dizer alguma coisa.\n\n## Os motivos mais comuns\n\n- **Fome:** muitos gatos aprendem que miar perto do pote faz a comida aparecer. Se o miado acontece sempre no mesmo horário, essa costuma ser a resposta.\n- **Atenção e carinho:** o gato pode miar para te cumprimentar quando você chega em casa ou para pedir colo e brincadeira.\n- **Tédio:** gatos que passam muito tempo sozinhos, sem brinquedos ou estímulos, podem miar mais para gastar energia.\n- **Cio:** fêmeas não castradas miam alto e com insistência quando estão no cio. Os machos também ficam mais vocais quando percebem uma fêmea por perto.\n- **Estresse ou mudança:** mudança de casa, chegada de um novo pet ou de um bebê e alteração na rotina podem deixar o gato inseguro.\n- **Idade:** gatos idosos podem miar mais, principalmente à noite, por desorientação ou por perda de audição ou de visão.\n\n## Quando ligar o alerta\n\nSe o seu gato sempre foi quietinho e de repente começou a miar muito, vale marcar uma consulta com o veterinário. Miados em excesso podem estar ligados a dor, a dificuldade para fazer xixi ou a alterações hormonais. Fique atento também a outros sinais, como mudança de apetite, perda de peso, vômitos ou o gato se escondendo mais que o normal.\n\n## O que você pode fazer em casa\n\n- Mantenha os horários de comida fixos, para ele não precisar \"cobrar\" a refeição.\n- Reserve alguns minutos por dia para brincar com varinha, bolinhas ou caixas.\n- Ofereça arranhadores, prateleiras e janelas teladas para ele explorar.\n- Evite atender todo miado com petisco, para não reforçar o hábito.\n- Converse com o veterinário sobre a castração, que reduz bastante os miados de cio.\n- No calor, capriche na água fresca: veja outras dicas em [como proteger o seu pet das altas temperaturas](/blog/calor-e-verao-como-proteger-o-pet/).\n\nCada gato tem sua própria \"voz\" e seu jeito de conversar. Com um pouco de observação, você aprende a entender o que cada miado quer dizer! 🐾",
@@ -20,6 +20,9 @@
           "titulo": "ASPCA: Meowing and Yowling (em inglês)",
           "url": "https://www.aspca.org/pet-care/cat-care/common-cat-behavior-issues/meowing-and-yowling"
         }
+      ],
+      "especies": [
+        "Gatos"
       ]
     },
     {
@@ -36,6 +39,10 @@
           "titulo": "AVMA (Associação Americana de Medicina Veterinária): Warm weather pet safety (em inglês)",
           "url": "https://www.avma.org/resources/pet-owners/petcare/warm-weather-pet-safety"
         }
+      ],
+      "especies": [
+        "Cães",
+        "Gatos"
       ]
     },
     {
@@ -57,6 +64,10 @@
           "titulo": "Consumidor.gov.br: registre uma reclamação",
           "url": "https://www.consumidor.gov.br/"
         }
+      ],
+      "especies": [
+        "Cães",
+        "Gatos"
       ]
     },
     {
@@ -78,7 +89,11 @@
           "url": "https://agenciagov.ebc.com.br/noticias/202504/propatinhas-e-sinpatinhas-sao-marcos-na-garantia-do-bem-estar-de-animais-domesticos"
         }
       ],
-      "afiliado": true
+      "afiliado": true,
+      "especies": [
+        "Cães",
+        "Gatos"
+      ]
     },
     {
       "slug": "por-que-meu-cachorro-me-lambe",
@@ -99,7 +114,10 @@
           "url": "https://www.akc.org/expert-advice/lifestyle/why-do-dogs-lick/"
         }
       ],
-      "afiliado": true
+      "afiliado": true,
+      "especies": [
+        "Cães"
+      ]
     }
   ]
 }

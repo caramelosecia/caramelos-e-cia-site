@@ -22,6 +22,7 @@ FONTES = "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&fami
 with open(os.path.join(RAIZ, "assets", "site.css"), encoding="utf-8") as _f:
     CSS = re.sub(r"\s*\n\s*", "", _f.read())
 PINTEREST = '<meta name="p:domain_verify" content="e2b6eca343b0e595d32aaa3747913422"/>'
+ESPECIES = ["Cães", "Gatos", "Outras espécies"]
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
 REDES = [
@@ -227,10 +228,11 @@ def card(p):
     capa = (tag_img(p["capa"], "(max-width: 700px) calc(100vw - 44px), 360px", alt=p.get("alt_capa") or p["titulo"]) if p.get("capa")
             else '<img class="sem" src="/img/icone.png" alt="" width="160" height="160" loading="lazy">')
     busca = esc((p["titulo"] + " " + p.get("resumo", "") + " " + p.get("corpo", "")).lower())
-    return f"""<a class="card" href="/blog/{esc(p['slug'])}/" data-cat="{esc(p.get('categoria') or 'Dicas')}" data-busca="{busca}">
+    esp = p.get("especies") or []
+    return f"""<a class="card" href="/blog/{esc(p['slug'])}/" data-esp="{esc('|'.join(esp))}" data-busca="{busca}">
   <div class="capa">{capa}</div>
   <div class="corpo">
-    <div class="meta"><span class="cat">{esc(p.get('categoria') or 'Dicas')}</span><span>{fmt_data(p.get('data'))}</span></div>
+    <div class="meta"><span class="cat">{esc(p.get('categoria') or 'Dicas')}</span><span>{esc(' · '.join(esp))}</span></div>
     <h3>{esc(p['titulo'])}</h3>
     <p>{esc(p.get('resumo'))}</p>
     <span class="leia">Ler artigo →</span>
@@ -305,9 +307,8 @@ if(h==="blog")location.replace("/blog/");else if(s.indexOf(h)>-1)location.replac
 
 
 def blog(cfg, posts):
-    cats = ["Todas"] + sorted({p.get("categoria") or "Dicas" for p in posts})
-    filtros = "".join(f'<button class="{"on" if c == "Todas" else ""}" data-cat="{esc(c)}">{esc(c)}</button>'
-                      for c in cats) if len(cats) > 2 else ""
+    cats = ["Todas"] + ESPECIES
+    filtros = "".join(f'<button class="{"on" if c == "Todas" else ""}" data-cat="{esc(c)}">{esc(c)}</button>' for c in cats)
     cards = "\n".join(card(p) for p in posts) or VAZIO
     corpo = f"""<section class="bloco">
   <div class="wrap">
@@ -319,12 +320,12 @@ def blog(cfg, posts):
     <div class="grid-posts" id="todos">
 {cards}
     </div>
-    <div class="vazio" id="nada" style="display:none">Nenhum artigo encontrado.</div>
+    <div class="vazio" id="nada" style="display:none">Nenhum artigo por aqui ainda. Novidades em breve 🐾</div>
   </div>
 </section>"""
     script = """<script>
 (function(){var cat="Todas",cards=[].slice.call(document.querySelectorAll("#todos .card")),busca=document.getElementById("busca");
-function f(){var q=(busca.value||"").toLowerCase(),n=0;cards.forEach(function(c){var ok=(cat==="Todas"||c.dataset.cat===cat)&&(!q||c.dataset.busca.indexOf(q)>-1);c.style.display=ok?"":"none";if(ok)n++});document.getElementById("nada").style.display=n?"none":"";}
+function f(){var q=(busca.value||"").toLowerCase(),n=0;cards.forEach(function(c){var ok=(cat==="Todas"||c.dataset.esp.split("|").indexOf(cat)>-1)&&(!q||c.dataset.busca.indexOf(q)>-1);c.style.display=ok?"":"none";if(ok)n++});document.getElementById("nada").style.display=n?"none":"";}
 document.getElementById("filtros").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;cat=b.dataset.cat;[].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)});f();});
 busca.addEventListener("input",f);})();
 </script>"""
@@ -335,7 +336,8 @@ busca.addEventListener("input",f);})();
 
 def relacionados(p, posts, n=3):
     outros = [x for x in posts if x["slug"] != p["slug"]]
-    mesma = [x for x in outros if (x.get("categoria") or "") == (p.get("categoria") or "")]
+    esp = set(p.get("especies") or [])
+    mesma = [x for x in outros if esp & set(x.get("especies") or [])]
     resto = [x for x in outros if x not in mesma]
     return (mesma + resto)[:n]
 
@@ -402,6 +404,10 @@ def main():
         dados = json.load(f)
     cfg = dados.get("config", {})
     posts = sorted(dados.get("posts", []), key=lambda p: p.get("data", ""), reverse=True)
+    for p in posts:
+        ruins = [e for e in p.get("especies") or [] if e not in ESPECIES]
+        if not p.get("especies") or ruins:
+            raise SystemExit(f"Artigo {p['slug']}: 'especies' deve ter um ou mais de {ESPECIES} (recebido {p.get('especies')})")
 
     salvar("index.html", home(cfg, posts))
     salvar("blog/index.html", blog(cfg, posts))
