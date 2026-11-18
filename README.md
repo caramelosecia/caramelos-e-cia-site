@@ -4,7 +4,7 @@ Site estático publicado na Hostinger (deploy automático a partir do ramo `main
 
 ## Como publicar ou editar um artigo
 
-1. Edite `conteudo.json` (lista `posts`): `especies` (um ou mais de "Cães", "Gatos", "Outras espécies"), `slug`, `titulo`, `resumo`, `categoria`, `data` (AAAA-MM-DD), `capa` (`img/arquivo.jpg`), `afiliado` (true/false) e `corpo`.
+1. Edite `conteudo.json` (lista `posts`): `slug`, `titulo`, `resumo`, `categoria`, `data` (AAAA-MM-DD), `capa` (`img/arquivo.jpg`), `afiliado` (true/false) e `corpo`.
 2. Coloque as imagens em `img/`.
 3. Rode `python3 build.py`: ele gera `index.html`, `blog/index.html`, `blog/<slug>/index.html`, `sitemap.xml` e `robots.txt`.
 4. Faça commit de tudo e envie para o `main`.
