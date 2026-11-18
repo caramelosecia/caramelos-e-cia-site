@@ -96,6 +96,7 @@ def inline(s):
     s = re.sub(r"\*(.+?)\*", r"<em>\1</em>", s)
     s = re.sub(r"\[([^\]]+)\]\((https?://[^)\s]+)\)",
                r'<a href="\2" target="_blank" rel="noopener">\1</a>', s)
+    s = re.sub(r"\[([^\]]+)\]\((/[^)\s]*)\)", r'<a href="\2">\1</a>', s)
     return s
 
 
@@ -223,7 +224,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
 
 
 def card(p):
-    capa = (tag_img(p["capa"], "(max-width: 700px) calc(100vw - 44px), 360px") if p.get("capa")
+    capa = (tag_img(p["capa"], "(max-width: 700px) calc(100vw - 44px), 360px", alt=p.get("alt_capa") or p["titulo"]) if p.get("capa")
             else '<img class="sem" src="/img/icone.png" alt="" width="160" height="160" loading="lazy">')
     busca = esc((p["titulo"] + " " + p.get("resumo", "") + " " + p.get("corpo", "")).lower())
     return f"""<a class="card" href="/blog/{esc(p['slug'])}/" data-cat="{esc(p.get('categoria') or 'Dicas')}" data-busca="{busca}">
@@ -332,13 +333,28 @@ busca.addEventListener("input",f);})();
                   caminho="/blog/", corpo=corpo, ativo="blog", scripts=script)
 
 
-def artigo(cfg, p):
+def relacionados(p, posts, n=3):
+    outros = [x for x in posts if x["slug"] != p["slug"]]
+    mesma = [x for x in outros if (x.get("categoria") or "") == (p.get("categoria") or "")]
+    resto = [x for x in outros if x not in mesma]
+    return (mesma + resto)[:n]
+
+
+def artigo(cfg, p, posts):
     of = link_ofertas(cfg)
     caminho = f"/blog/{p['slug']}/"
     aviso = ('<p class="aviso-afiliado">Este artigo contém links de afiliado. Se você comprar por eles, a Caramelos e Cia '
              'pode receber uma pequena comissão, sem nenhum custo extra para você. Os preços e as condições podem mudar '
              'a qualquer momento: confira sempre na loja.</p>') if p.get("afiliado") else ""
-    capa = f'<div class="capa-art">{tag_img(p["capa"], "(max-width: 800px) 100vw, 716px", lazy=False)}</div>' if p.get("capa") else ""
+    capa = f'<div class="capa-art">{tag_img(p["capa"], "(max-width: 800px) 100vw, 716px", alt=p.get("alt_capa") or p["titulo"], lazy=False)}</div>' if p.get("capa") else ""
+    fontes = p.get("fontes") or []
+    fontes_html = ("<section class=\"fontes\"><h2>Fontes e leitura recomendada</h2><ul>" + "".join(
+        f'<li><a href="{esc(f["url"])}" target="_blank" rel="noopener">{esc(f["titulo"])}</a></li>' for f in fontes)
+        + "</ul></section>") if fontes else ""
+    rel = relacionados(p, posts)
+    leia_html = ("<section class=\"leia-tambem\"><h2>Leia também</h2><ul>" + "".join(
+        f'<li><a href="/blog/{esc(x["slug"])}/">{esc(x["titulo"])}</a></li>' for x in rel)
+        + "</ul></section>") if rel else ""
     corpo = f"""<article class="artigo">
   <a class="voltar" href="/blog/">← Voltar para o blog</a><br>
   <span class="tag">{esc(p.get('categoria') or 'Dicas')}</span>
@@ -350,6 +366,8 @@ def artigo(cfg, p):
   <div class="texto">
 {md(p.get('corpo'))}
   </div>
+  {fontes_html}
+  {leia_html}
   <div class="cta-art"><div><h3>Curtiu? Economize com o seu pet também.</h3><p>Entre no nosso grupo de ofertas.</p></div>
   <a class="btn preto" {of}>Entrar no grupo</a></div>
 </article>"""
@@ -362,7 +380,12 @@ def artigo(cfg, p):
         "author": {"@type": "Organization", "name": NOME},
         "publisher": {"@type": "Organization", "name": NOME, "logo": {"@type": "ImageObject", "url": SITE + "/img/logo.png"}},
     }
-    extra = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
+    trilha = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE + "/blog/"},
+        {"@type": "ListItem", "position": 3, "name": p["titulo"], "item": SITE + caminho}]}
+    extra = (f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>'
+             f'<script type="application/ld+json">{json.dumps(trilha, ensure_ascii=False)}</script>')
     return pagina(cfg, titulo=f"{p['titulo']} | {NOME}", descricao=p.get("resumo", ""), caminho=caminho,
                   corpo=corpo, ativo="blog", imagem=p.get("capa"), tipo="article", extra_head=extra)
 
@@ -383,7 +406,7 @@ def main():
     salvar("index.html", home(cfg, posts))
     salvar("blog/index.html", blog(cfg, posts))
     for p in posts:
-        salvar(f"blog/{p['slug']}/index.html", artigo(cfg, p))
+        salvar(f"blog/{p['slug']}/index.html", artigo(cfg, p, posts))
 
     hoje = datetime.date.today().isoformat()
     ult = posts[0].get("data", hoje) if posts else hoje

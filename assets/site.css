@@ -125,3 +125,9 @@ footer{background:var(--preto);color:#eee;padding:48px 0 36px}
 @media (max-width:420px){.menu .btn{display:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .meta-art{color:var(--cinza);font-size:.9rem;margin:-14px 0 26px}
+.fontes,.leia-tambem{margin-top:40px;border-top:2px solid #eee;padding-top:22px}
+.fontes h2,.leia-tambem h2{font-size:1.35rem;margin-bottom:12px}
+.fontes ul,.leia-tambem ul{margin-left:1.2em}
+.fontes li,.leia-tambem li{margin-bottom:.5em}
+.fontes a{color:var(--cinza);font-size:.95rem}
+.leia-tambem a{color:var(--laranja-esc);font-weight:600}

@@ -19,3 +19,16 @@ Site estático publicado na Hostinger (deploy automático a partir do ramo `main
 - `@produto Nome | descrição | https://link-afiliado | img/foto.jpg | preço (opcional)` (card de produto)
 
 Os estilos ficam em `assets/site.css`. Não edite os arquivos `.html` direto: eles são gerados pelo `build.py`.
+
+## Regras de SEO (guia do Google para iniciantes)
+
+Todo artigo novo deve ter:
+
+- `titulo` único e claro e `resumo` de 1 ou 2 frases (vira a meta description).
+- `slug` com palavras que descrevem o tema (vira o endereço `/blog/<slug>/`).
+- `alt_capa`: texto alternativo curto que descreve a foto da capa.
+- Pelo menos 1 link interno no texto para outro artigo do blog, com texto âncora descritivo (`[texto](/blog/slug/)`). O bloco "Leia também" é gerado automaticamente.
+- `fontes`: 1 a 3 links externos confiáveis (órgãos oficiais, associações veterinárias, Procon etc.).
+- Subtítulos `##` organizando o texto, conteúdo original e sem repetição forçada de palavras-chave.
+- Links de afiliado só pelos cards `@produto` (já saem com `rel="sponsored"`) e `"afiliado": true` para mostrar o aviso.
+- Temas de saúde: orientar a procurar o veterinário e nunca dizer que o produto resolve sintomas.
