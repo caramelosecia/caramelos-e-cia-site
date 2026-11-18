@@ -131,3 +131,4 @@ footer{background:var(--preto);color:#eee;padding:48px 0 36px}
 .fontes li,.leia-tambem li{margin-bottom:.5em}
 .fontes a{color:var(--cinza);font-size:.95rem}
 .leia-tambem a{color:var(--laranja-esc);font-weight:600}
+.card .capa img.sem{width:38%;height:auto;object-fit:contain;background:none}
