@@ -4,226 +4,270 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="p:domain_verify" content="e2b6eca343b0e595d32aaa3747913422"/>
-<title>Caramelos e Cia</title>
-<link rel="icon" href="img/icone.png">
+<title>Caramelos e Cia | Dicas, cuidados e ofertas para pets</title>
+<meta name="description" content="Informação, dicas e curiosidades para quem ama bicho.">
+<link rel="canonical" href="https://caramelosecia.com/">
+<meta property="og:site_name" content="Caramelos e Cia">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Caramelos e Cia | Dicas, cuidados e ofertas para pets">
+<meta property="og:description" content="Informação, dicas e curiosidades para quem ama bicho.">
+<meta property="og:url" content="https://caramelosecia.com/">
+<meta property="og:image" content="https://caramelosecia.com/img/logo.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--laranja:#FF8A2B;--laranja-esc:#E8701A;--laranja-claro:#FFF1E4;--preto:#121212;--cinza:#5b5249;--branco:#fff;--borda:2.5px solid var(--preto);--raio:18px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:"Figtree",system-ui,sans-serif;color:var(--preto);background:var(--branco);line-height:1.6;font-size:17px}
-img{max-width:100%;display:block}
-a{color:inherit}
-h1,h2,h3,.fred{font-family:"Fredoka",sans-serif;font-weight:700;line-height:1.1;letter-spacing:-.01em}
-.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+<link rel="stylesheet" href="/assets/site.css">
 
-/* header */
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:var(--borda)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
-.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
-.marca img{width:46px;height:46px}
-.marca span{font-family:"Fredoka";font-weight:700;font-size:1.35rem;text-transform:uppercase;letter-spacing:.04em}
-.menu{display:flex;align-items:center;gap:6px}
-.menu a{text-decoration:none;font-weight:600;padding:8px 14px;border-radius:999px}
-.menu a.ativo{background:var(--laranja-claro)}
-.menu a:hover{background:var(--laranja-claro)}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:"Fredoka";font-weight:600;font-size:1.05rem;text-decoration:none;background:var(--laranja);color:var(--preto);border:var(--borda);border-radius:999px;padding:12px 24px;box-shadow:4px 4px 0 var(--preto);transition:transform .12s,box-shadow .12s;cursor:pointer}
-.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--preto)}
-.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--preto)}
-.btn.preto{background:var(--preto);color:var(--branco);box-shadow:4px 4px 0 var(--laranja)}
-.btn.desab{background:#eee;color:#777;box-shadow:none;cursor:default;transform:none}
-.menu .btn{padding:8px 18px;font-size:.95rem;box-shadow:3px 3px 0 var(--preto)}
-
-/* hero */
-.hero{background:var(--laranja);padding:64px 0 80px;position:relative;overflow:hidden}
-.hero .pata{position:absolute;opacity:.13;font-size:120px}
-.hero-card{background:var(--branco);border:var(--borda);border-radius:var(--raio);display:grid;grid-template-columns:1.25fr .9fr;gap:24px;align-items:center;padding:48px 52px;position:relative}
-.hero h1{font-size:clamp(2.4rem,5.2vw,4rem);margin-bottom:16px}
-.hero p.lead{font-size:1.2rem;color:var(--cinza);max-width:30ch;margin-bottom:28px}
-.tag{display:inline-block;background:var(--laranja);font-weight:600;font-size:.88rem;padding:4px 12px;margin-bottom:18px}
-.hero-logo{width:100%;max-width:340px;justify-self:center;animation:balanca 5s ease-in-out infinite}
-@keyframes balanca{50%{transform:rotate(-4deg) translateY(-6px)}}
-.acoes{display:flex;gap:14px;flex-wrap:wrap}
-
-/* ofertas */
-section.bloco{padding:84px 0}
-.titulo-sec{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:34px;flex-wrap:wrap}
-.titulo-sec h2{font-size:clamp(1.9rem,3.6vw,2.7rem)}
-.titulo-sec p{color:var(--cinza);max-width:46ch}
-.ofertas{background:var(--laranja-claro);border-top:var(--borda);border-bottom:var(--borda)}
-.ofertas-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.beneficios{display:grid;gap:14px}
-.ben{display:flex;gap:16px;align-items:flex-start;background:var(--branco);border:var(--borda);border-radius:14px;padding:18px 20px}
-.ben .ico{flex:none;width:46px;height:46px;border-radius:50%;background:var(--laranja);border:var(--borda);display:grid;place-items:center;font-size:1.3rem}
-.ben h3{font-size:1.15rem;margin-bottom:2px}
-.ben p{color:var(--cinza);font-size:.97rem}
-.ofertas-cta h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:14px}
-.ofertas-cta p{color:var(--cinza);margin-bottom:26px;font-size:1.1rem}
-.nota{font-size:.88rem;color:var(--cinza);margin-top:14px}
-
-/* cards blog */
-.grid-posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px}
-.card{background:var(--branco);border:var(--borda);border-radius:var(--raio);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--laranja)}
-.card .capa{aspect-ratio:16/10;background:var(--laranja);border-bottom:var(--borda);overflow:hidden;display:grid;place-items:center}
-.card .capa img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
-.card .capa .sem{width:42%;opacity:.95}
-.card .corpo{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
-.card .meta{font-size:.82rem;color:var(--cinza);display:flex;gap:10px;align-items:center}
-.card .cat{background:var(--laranja);color:var(--preto);font-weight:600;padding:2px 9px}
-.card h3{font-size:1.4rem}
-.card p{color:var(--cinza);font-size:.97rem}
-.card .leia{margin-top:auto;font-weight:700;padding-top:8px}
-.vazio{border:2.5px dashed var(--preto);border-radius:var(--raio);padding:40px;text-align:center;color:var(--cinza)}
-
-/* filtros */
-.filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-.filtros button{font:600 .92rem "Figtree";border:var(--borda);background:var(--branco);border-radius:999px;padding:6px 16px;cursor:pointer}
-.filtros button.on{background:var(--laranja)}
-.busca{font:500 1rem "Figtree";border:var(--borda);border-radius:999px;padding:10px 18px;width:min(340px,100%)}
-
-/* artigo */
-.artigo{max-width:760px;margin:0 auto;padding:56px 22px 90px}
-.voltar{display:inline-block;font-weight:600;text-decoration:none;margin-bottom:26px}
-.voltar:hover{text-decoration:underline}
-.artigo h1{font-size:clamp(2.2rem,5vw,3.4rem);margin:14px 0 14px}
-.artigo .sub{font-size:1.22rem;color:var(--cinza);margin-bottom:28px}
-.artigo .capa-art{border:var(--borda);border-radius:var(--raio);overflow:hidden;margin-bottom:36px;max-height:520px}
-.artigo .capa-art img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
-.texto p{margin-bottom:1.15em}
-.texto h2{font-size:1.75rem;margin:1.6em 0 .6em}
-.texto h3{font-size:1.3rem;margin:1.4em 0 .5em}
-.texto ul,.texto ol{margin:0 0 1.2em 1.3em}
-.texto li{margin-bottom:.5em}
-.texto li::marker{color:var(--laranja-esc)}
-.texto blockquote{border-left:6px solid var(--laranja);background:var(--laranja-claro);padding:14px 20px;margin:0 0 1.2em;border-radius:0 12px 12px 0}
-.texto a{color:var(--laranja-esc);font-weight:600}
-.cta-art{margin-top:48px;background:var(--laranja);border:var(--borda);border-radius:var(--raio);padding:30px 32px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.cta-art h3{font-size:1.5rem}
-
-.produto{display:flex;gap:18px;align-items:center;border:var(--borda);border-radius:16px;padding:16px;margin:0 0 1.2em;background:#fff;box-shadow:4px 4px 0 var(--laranja)}
-.produto .pimg{flex:none;width:110px;height:110px;border-radius:12px;border:2px solid #eee;background:var(--laranja-claro);display:grid;place-items:center;overflow:hidden}
-.produto .pimg img{width:100%;height:100%;object-fit:contain;background:#fff}
-.produto .pimg svg{width:44px;height:44px}
-.produto .pinfo{flex:1;min-width:0}
-.produto .pinfo strong{display:block;font-family:"Fredoka";font-size:1.15rem;line-height:1.2;margin-bottom:4px}
-.produto .pinfo span{display:block;color:var(--cinza);font-size:.95rem;line-height:1.45}
-.produto .preco{font-weight:700;color:var(--preto)!important;margin-top:4px}
-.produto .btn{padding:10px 18px;font-size:.95rem;white-space:nowrap;text-decoration:none;color:var(--preto)}
-.aviso-afiliado{font-size:.88rem;color:var(--cinza);background:#f6f6f6;border-radius:12px;padding:12px 16px;margin-bottom:28px}
-@media (max-width:600px){.produto{flex-wrap:wrap}.produto .pimg{width:84px;height:84px}.produto .btn{width:100%;justify-content:center}}
-footer{background:var(--preto);color:#eee;padding:48px 0 36px}
-.rodape{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.rodape .marca span{color:#fff}
-.rodape .marca img{background:#fff;border-radius:50%}
-.rodape small{color:#aaa}
-.redes{width:100%;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;padding-top:16px;border-top:1px solid #333}
-.redes a{color:#bbb;text-decoration:none}
-.redes a:hover{color:var(--laranja)}
-
-.view{display:none}.view.on{display:block}
-
-@media (max-width:820px){
-  body{font-size:16px}
-  .hero{padding:36px 0 52px}
-  .hero-card{grid-template-columns:1fr;padding:30px 24px;text-align:left}
-  .hero-logo{max-width:200px;grid-row:1}
-  .ofertas-grid{grid-template-columns:1fr}
-  .menu a:not(.btn){padding:8px 10px}
-  .marca span{display:none}
-  section.bloco{padding:56px 0}
-}
-@media (max-width:420px){.menu .btn{display:none}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
 </head>
 <body>
 <header>
   <div class="wrap nav">
-    <a class="marca" href="#inicio"><img src="img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
+    <a class="marca" href="/"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
     <nav class="menu">
-      <a href="#inicio" data-nav="inicio">Início</a>
-      <a href="#blog" data-nav="blog">Blog</a>
-      <a href="#ofertas" class="btn" data-ofertas-nav>Grupo de ofertas</a>
+      <a href="/" class=ativo>Início</a>
+      <a href="/blog/">Blog</a>
+      <a class="btn" href="https://chat.whatsapp.com/HDrr5d6y5yf9t6T0od8NXV" target="_blank" rel="noopener">Grupo de ofertas</a>
     </nav>
   </div>
 </header>
-
 <main>
-  <!-- INÍCIO -->
-  <div class="view" id="v-inicio">
-    <section class="hero">
-      <span class="pata" style="top:20px;left:4%">🐾</span>
-      <span class="pata" style="bottom:-10px;right:6%;transform:rotate(25deg)">🐾</span>
-      <div class="wrap">
-        <div class="hero-card">
-          <div>
-            <span class="tag">Dicas • Curiosidades • Cuidados</span>
-            <h1>Para quem ama cães, gatos e cia.</h1>
-            <p class="lead" id="slogan">Informação, dicas e curiosidades para quem ama bicho.</p>
-            <div class="acoes">
-              <a class="btn" data-ofertas-link href="#ofertas">Entrar no grupo de ofertas</a>
-              <a class="btn preto" href="#blog">Ler o blog</a>
-            </div>
-          </div>
-          <img class="hero-logo" src="img/logo.png" alt="Logo Caramelos e Cia">
+<section class="hero">
+  <span class="pata" style="top:20px;left:4%">🐾</span>
+  <span class="pata" style="bottom:-10px;right:6%;transform:rotate(25deg)">🐾</span>
+  <div class="wrap">
+    <div class="hero-card">
+      <div>
+        <span class="tag">Dicas • Curiosidades • Cuidados</span>
+        <h1>Para quem ama cães, gatos e cia.</h1>
+        <p class="lead">Informação, dicas e curiosidades para quem ama bicho.</p>
+        <div class="acoes">
+          <a class="btn" href="https://chat.whatsapp.com/HDrr5d6y5yf9t6T0od8NXV" target="_blank" rel="noopener">Entrar no grupo de ofertas</a>
+          <a class="btn preto" href="/blog/">Ler o blog</a>
         </div>
       </div>
-    </section>
-
-    <section class="bloco ofertas" id="ofertas-sec">
-      <div class="wrap ofertas-grid">
-        <div class="ofertas-cta">
-          <span class="tag">Grupo de ofertas</span>
-          <h2>Economize no que o seu pet mais usa.</h2>
-          <p>Promoções selecionadas de ração, petiscos, areia, antipulgas e brinquedos, direto no seu celular. Entre no grupo e receba as melhores ofertas primeiro.</p>
-          <a class="btn" data-ofertas-link href="#ofertas">Quero entrar no grupo</a>
-          <p class="nota" id="nota-ofertas"></p>
-        </div>
-        <div class="beneficios">
-          <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#121212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg></div><div><h3>Ofertas garimpadas</h3><p>Só promoção que vale a pena, com preço conferido.</p></div></div>
-          <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#121212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1.5" fill="#121212"/></svg></div><div><h3>Cupons exclusivos</h3><p>Descontos extras de lojas e pet shops parceiros.</p></div></div>
-          <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#121212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><div><h3>Alertas relâmpago</h3><p>Black Friday, datas especiais e baixas de preço avisadas na hora.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bloco">
-      <div class="wrap">
-        <div class="titulo-sec">
-          <div><span class="tag">Blog</span><h2>Últimos artigos</h2></div>
-          <a class="btn preto" href="#blog">Ver todos</a>
-        </div>
-        <div class="grid-posts" id="ultimos"></div>
-      </div>
-    </section>
+      <img class="hero-logo" src="/img/logo.png" alt="Logo Caramelos e Cia">
+    </div>
   </div>
+</section>
 
-  <!-- BLOG -->
-  <div class="view" id="v-blog">
-    <section class="bloco">
-      <div class="wrap">
-        <div class="titulo-sec">
-          <div><span class="tag">Blog Caramelos e Cia</span><h2>Dicas, cuidados e curiosidades</h2></div>
-          <input class="busca" id="busca" type="search" placeholder="Buscar artigo..." aria-label="Buscar artigo">
-        </div>
-        <div class="filtros" id="filtros"></div>
-        <div class="grid-posts" id="todos"></div>
-      </div>
-    </section>
+<section class="bloco ofertas" id="ofertas">
+  <div class="wrap ofertas-grid">
+    <div class="ofertas-cta">
+      <span class="tag">Grupo de ofertas</span>
+      <h2>Economize no que o seu pet mais usa.</h2>
+      <p>Promoções selecionadas de ração, petiscos, areia, antipulgas e brinquedos, direto no seu celular. Entre no grupo e receba as melhores ofertas primeiro.</p>
+      <a class="btn" href="https://chat.whatsapp.com/HDrr5d6y5yf9t6T0od8NXV" target="_blank" rel="noopener">Quero entrar no grupo</a>
+      <p class="nota">Grupo no WhatsApp. É grátis e você sai quando quiser.</p>
+    </div>
+    <div class="beneficios">
+      <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#121212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg></div><div><h3>Ofertas garimpadas</h3><p>Só promoção que vale a pena, com preço conferido.</p></div></div>
+      <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#121212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1.5" fill="#121212"/></svg></div><div><h3>Cupons exclusivos</h3><p>Descontos extras de lojas e pet shops parceiros.</p></div></div>
+      <div class="ben"><div class="ico"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#121212" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><div><h3>Alertas relâmpago</h3><p>Black Friday, datas especiais e baixas de preço avisadas na hora.</p></div></div>
+    </div>
   </div>
+</section>
 
-  <!-- ARTIGO -->
-  <div class="view" id="v-artigo"><article class="artigo" id="artigo"></article></div>
+<section class="bloco">
+  <div class="wrap">
+    <div class="titulo-sec">
+      <div><span class="tag">Blog</span><h2>Últimos artigos</h2></div>
+      <a class="btn preto" href="/blog/">Ver todos</a>
+    </div>
+    <div class="grid-posts">
+<a class="card" href="/blog/por-que-meu-gato-mia-tanto/" data-cat="Gatos" data-busca="por que meu gato mia tanto? entenda os principais motivos dos miados e saiba quando o miado em excesso merece atenção. uma curiosidade que pouca gente conhece: gatos adultos quase não miam entre si. o miado é, principalmente, uma forma de se comunicar com a gente. por isso, quando o seu gato mia, ele está tentando te dizer alguma coisa.
+
+## os motivos mais comuns
+
+- **fome:** muitos gatos aprendem que miar perto do pote faz a comida aparecer. se o miado acontece sempre no mesmo horário, essa costuma ser a resposta.
+- **atenção e carinho:** o gato pode miar para te cumprimentar quando você chega em casa ou para pedir colo e brincadeira.
+- **tédio:** gatos que passam muito tempo sozinhos, sem brinquedos ou estímulos, podem miar mais para gastar energia.
+- **cio:** fêmeas não castradas miam alto e com insistência quando estão no cio. os machos também ficam mais vocais quando percebem uma fêmea por perto.
+- **estresse ou mudança:** mudança de casa, chegada de um novo pet ou de um bebê e alteração na rotina podem deixar o gato inseguro.
+- **idade:** gatos idosos podem miar mais, principalmente à noite, por desorientação ou por perda de audição ou de visão.
+
+## quando ligar o alerta
+
+se o seu gato sempre foi quietinho e de repente começou a miar muito, vale marcar uma consulta com o veterinário. miados em excesso podem estar ligados a dor, a dificuldade para fazer xixi ou a alterações hormonais. fique atento também a outros sinais, como mudança de apetite, perda de peso, vômitos ou o gato se escondendo mais que o normal.
+
+## o que você pode fazer em casa
+
+- mantenha os horários de comida fixos, para ele não precisar &quot;cobrar&quot; a refeição.
+- reserve alguns minutos por dia para brincar com varinha, bolinhas ou caixas.
+- ofereça arranhadores, prateleiras e janelas teladas para ele explorar.
+- evite atender todo miado com petisco, para não reforçar o hábito.
+- converse com o veterinário sobre a castração, que reduz bastante os miados de cio.
+
+cada gato tem sua própria &quot;voz&quot; e seu jeito de conversar. com um pouco de observação, você aprende a entender o que cada miado quer dizer! 🐾">
+  <div class="capa"><img src="/img/foto-gato-mia.jpg" alt="" loading="lazy"></div>
+  <div class="corpo">
+    <div class="meta"><span class="cat">Gatos</span><span>17 de novembro de 2026</span></div>
+    <h3>Por que meu gato mia tanto?</h3>
+    <p>Entenda os principais motivos dos miados e saiba quando o miado em excesso merece atenção.</p>
+    <span class="leia">Ler artigo →</span>
+  </div></a>
+<a class="card" href="/blog/calor-e-verao-como-proteger-o-pet/" data-cat="Cuidados" data-busca="calor e verão: como proteger o seu pet das altas temperaturas teste do asfalto, hidratação, sinais de insolação e um picolé refrescante: o guia para o seu pet passar o verão com saúde. o verão começa oficialmente em 21 de dezembro, mas quem mora no brasil sabe que o calor chega bem antes. para os pets, as altas temperaturas exigem atenção redobrada: cães e gatos não suam pelo corpo como nós. eles regulam a temperatura principalmente pela respiração ofegante e por pequenas glândulas nas patinhas, um sistema bem menos eficiente que o nosso.
+
+por isso, alguns cuidados simples fazem toda a diferença para o seu melhor amigo passar pelo verão com saúde.
+
+## 1. faça o teste da mão no asfalto
+
+antes de sair para passear, encoste o dorso da mão no chão por 7 segundos. se você não aguentar, a pata do seu pet também não aguenta. asfalto, calçada e areia podem passar dos 50 °c em dias de sol forte e causar queimaduras nas almofadinhas.
+
+- prefira passear **antes das 9h e depois das 18h**.
+- caminhe pela grama ou pela sombra sempre que possível.
+- leve água para o passeio, também para ele.
+
+## 2. água fresca à vontade
+
+deixe mais de um pote de água espalhado pela casa e troque a água várias vezes ao dia. alguns truques ajudam o pet a beber mais:
+
+- coloque algumas pedras de gelo no pote.
+- para gatos, fontes de água corrente costumam fazer sucesso.
+- ofereça alimentos úmidos (sachê ou patê), que também ajudam na hidratação.
+
+## 3. sombra e ambiente fresco
+
+garanta que o pet tenha sempre um lugar com sombra e ventilação. pisos frios, tapetes gelados próprios para pets e uma toalha úmida no chão ajudam bastante. quem fica no quintal precisa de abrigo protegido do sol em todos os horários do dia, já que a sombra muda de lugar ao longo da tarde.
+
+## 4. nunca deixe o pet dentro do carro
+
+nem por &quot;só cinco minutinhos&quot;. com o carro fechado ao sol, a temperatura interna sobe muito rápido, mesmo com o vidro entreaberto. é uma das situações que mais causam hipertermia em pets.
+
+## 5. atenção redobrada a quem sofre mais com o calor
+
+alguns pets precisam de cuidado extra:
+
+- **raças de focinho curto** (braquicefálicas), como pug, buldogue francês, shih tzu, boxer e gatos persas, têm mais dificuldade para respirar e se refrescar.
+- **filhotes e idosos**.
+- **pets obesos** ou com doenças cardíacas e respiratórias.
+- **cães de pelagem escura ou muito densa**.
+
+## sinais de insolação: fique de olho
+
+a insolação (hipertermia) é uma emergência. os principais sinais são:
+
+- respiração muito ofegante e acelerada
+- língua e gengivas muito vermelhas ou arroxeadas
+- salivação excessiva
+- fraqueza, desequilíbrio ou apatia
+- vômito ou diarreia
+
+**o que fazer:** leve o pet para a sombra ou para um lugar fresco, molhe o corpo dele com água em temperatura ambiente ou fresca (nunca gelada) e ofereça água em pequenas quantidades. em seguida, procure um médico-veterinário imediatamente, mesmo que ele pareça melhorar.
+
+&gt; evite água gelada ou gelo direto no corpo: o choque térmico contrai os vasos sanguíneos e atrapalha o resfriamento.
+
+## bônus: picolé refrescante para o seu pet
+
+uma delícia para dias quentes: bata pedaços de **melancia sem sementes** ou **banana** com um pouco de água e congele em forminhas de gelo. ofereça aos poucos, como petisco.
+
+nunca use uva, chocolate, adoçantes (principalmente xilitol), leite com açúcar ou frutas com caroço inteiro.
+
+## e a tosa?
+
+a tosa higiênica e o pelo mais curto podem ajudar algumas raças, mas **raspar totalmente** cães de pelagem dupla (como husky, spitz e golden) pode ter o efeito contrário: o pelo também protege do sol e de queimaduras. na dúvida, converse com o veterinário ou com um tosador de confiança.
+
+com esses cuidados, o verão pode ser só alegria para você e para o seu caramelo! ☀️🐾">
+  <div class="capa"><img src="/img/foto-calor-pet.jpg" alt="" loading="lazy"></div>
+  <div class="corpo">
+    <div class="meta"><span class="cat">Cuidados</span><span>17 de novembro de 2026</span></div>
+    <h3>Calor e verão: como proteger o seu pet das altas temperaturas</h3>
+    <p>Teste do asfalto, hidratação, sinais de insolação e um picolé refrescante: o guia para o seu pet passar o verão com saúde.</p>
+    <span class="leia">Ler artigo →</span>
+  </div></a>
+<a class="card" href="/blog/black-friday-pet-guia-de-compras/" data-cat="Ofertas" data-busca="black friday pet: guia para comprar bem e economizar de verdade o que vale a pena estocar, o que evitar, como saber se o desconto é real e como fugir dos golpes. a black friday 2026 acontece no dia **27 de novembro**, e muitas lojas começam as promoções já na semana anterior. para quem tem pet, é uma ótima chance de economizar em itens que a gente compra todo mês. mas só vale a pena se a compra for planejada.
+
+preparamos um guia para você aproveitar sem cair em armadilhas.
+
+## antes de tudo: faça a sua lista
+
+anote o que o seu pet consome e em que quantidade por mês: ração, petiscos, areia, tapete higiênico, antipulgas e vermífugo. assim você sabe exatamente quanto vale a pena estocar e evita as compras por impulso.
+
+&gt; dica: anote também o preço que você paga hoje em cada item. é a melhor forma de saber se o desconto é real.
+
+## o que vale a pena estocar
+
+### ração
+
+é o item que mais pesa no bolso, e por isso o que mais compensa na black friday. prefira a marca e a linha que o seu pet **já come**: trocar a ração de repente pode causar vômito e diarreia. se for mudar, faça a transição aos poucos, misturando as duas por cerca de 7 dias.
+
+- confira a **data de validade** antes de comprar em grande quantidade.
+- embalagens fechadas duram mais. depois de aberta, guarde a ração em pote bem vedado, longe do sol e da umidade.
+- compre só o que o seu pet consegue consumir dentro da validade.
+
+@produto ração pedigree raças pequenas 10,1 kg | para cães adultos de raças pequenas. o pacote grande rende bem e costuma ter ótimos descontos. confira a validade antes de comprar. | https://s.shopee.com.br/gridanacl | img/prod-racaocachorro.jpg
+@produto ração golden special para gatos castrados 10 kg | para gatos adultos castrados. o pacote de 10 kg é uma boa pedida para estocar com desconto. | https://s.shopee.com.br/8axjz6hj4c | img/prod-racaogato.jpg
+
+### antipulgas e vermífugo
+
+com o verão chegando, é a hora certa de garantir a proteção contra pulgas, carrapatos e mosquitos. atenção à **faixa de peso** indicada na embalagem, que precisa ser a do seu pet, e à validade. na dúvida sobre qual produto usar, consulte o veterinário.
+
+@produto antipulgas nexgard para cães | comprimido mastigável contra pulgas e carrapatos. escolha a caixa de acordo com o peso do seu cão e, na dúvida, consulte o veterinário. | https://s.shopee.com.br/akce8zbqwj | img/prod-antipulgas.jpg
+
+### areia e tapetes higiênicos
+
+são itens de consumo constante, que não estragam e ocupam pouco espaço quando bem guardados. ótimos para estocar.
+
+@produto tapete higiênico petbraz | item de uso diário que não estraga: vale a pena comprar o pacote maior quando o preço está bom. | https://s.shopee.com.br/1lhpqvq8bp | img/prod-tapetehigienico.jpg
+
+### itens duráveis
+
+caminha, arranhador, fonte de água, caixa de transporte e comedouro lento costumam ter bons descontos e duram anos. a fonte de água é uma ótima compra para o verão, porque incentiva os gatos a beberem mais.
+
+@produto alimentador automático | libera a ração nos horários programados. ajuda a manter a rotina das refeições e é ótimo para quem passa o dia fora. | https://s.shopee.com.br/906qyf910s | img/prod-alimentadorautomatico.jpg
+@produto comedouro de alumínio com suporte | o alumínio é fácil de limpar e mais higiênico que o plástico, e o suporte deixa o pote numa altura confortável para o pet comer. | https://s.shopee.com.br/80ejmqykkh | img/prod-comedouroaluminiosuporte.jpg
+
+### mimos e cuidados extras
+
+com o orçamento principal garantido, a black friday também é uma boa hora para aqueles itens que deixam a rotina do pet mais gostosa.
+
+@produto graminha para gatos | os gatos adoram mastigar matinho, e a graminha própria para eles é uma opção segura no lugar das plantas da casa, algumas delas tóxicas. | https://s.shopee.com.br/1bnzej2i0r | img/prod-graminhaparagatos.jpg
+@produto escova secadora pet | escova e seca ao mesmo tempo, o que facilita o banho em casa e ajuda a remover os pelos soltos. ótima para a época de troca de pelagem. | https://s.shopee.com.br/1w0pcwic5a | img/prod-escovasecadorapet.jpg
+
+## o que evitar
+
+- **petiscos e alimentos úmidos em excesso:** têm validade mais curta e podem acabar vencendo no armário.
+- **brinquedos muito baratos e sem procedência:** peças pequenas que se soltam podem ser engolidas.
+- **medicamentos sem orientação:** desconto não é motivo para medicar o pet por conta própria.
+- **comprar só porque está barato:** se não está na sua lista, provavelmente não é economia.
+
+## como saber se o desconto é real
+
+o famoso &quot;tudo pela metade do dobro&quot; ainda acontece. para não cair nessa:
+
+- compare com o preço que você anotou antes da black friday.
+- use sites e aplicativos que mostram o **histórico de preço** do produto.
+- some o valor do frete antes de decidir: às vezes a loja do bairro sai mais barato.
+- veja se o preço por quilo compensa. às vezes o pacote maior não é o mais vantajoso.
+
+## cuidado com golpes
+
+- desconfie de preços muito abaixo do normal e de links recebidos por mensagem de desconhecidos.
+- compre em lojas conhecidas e confira se o endereço do site está correto.
+- pesquise a reputação da loja em sites de reclamação antes de comprar.
+- evite pagar por pix para lojas que você não conhece. prefira o cartão de crédito, que permite contestar a compra.
+
+## receba as ofertas antes de todo mundo
+
+no nosso **grupo de ofertas no whatsapp**, a gente garimpa as melhores promoções pet da black friday e avisa assim que elas aparecem. é gratuito e você sai quando quiser. é só tocar no botão no fim deste artigo! 🐾">
+  <div class="capa"><img src="/img/capa-black-friday.jpg" alt="" loading="lazy"></div>
+  <div class="corpo">
+    <div class="meta"><span class="cat">Ofertas</span><span>17 de novembro de 2026</span></div>
+    <h3>Black Friday pet: guia para comprar bem e economizar de verdade</h3>
+    <p>O que vale a pena estocar, o que evitar, como saber se o desconto é real e como fugir dos golpes.</p>
+    <span class="leia">Ler artigo →</span>
+  </div></a>
+    </div>
+  </div>
+</section>
 </main>
-
 <footer>
   <div class="wrap rodape">
-    <a class="marca" href="#inicio"><img src="img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
+    <a class="marca" href="/"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
     <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
-      <a href="#blog" style="text-decoration:none">Blog</a>
-      <a href="#ofertas" data-ofertas-link style="text-decoration:none">Grupo de ofertas</a>
+      <a href="/blog/" style="text-decoration:none">Blog</a>
+      <a href="https://chat.whatsapp.com/HDrr5d6y5yf9t6T0od8NXV" target="_blank" rel="noopener" style="text-decoration:none">Grupo de ofertas</a>
     </div>
     <nav class="redes" aria-label="Redes sociais">
       <a href="https://www.instagram.com/caramelosecia" target="_blank" rel="noopener">Instagram</a>
@@ -232,118 +276,12 @@ footer{background:var(--preto);color:#eee;padding:48px 0 36px}
       <a href="https://www.youtube.com/@carameloscia" target="_blank" rel="noopener">YouTube</a>
       <a href="https://br.pinterest.com/carameloscia" target="_blank" rel="noopener">Pinterest</a>
     </nav>
-    <small>© <span id="ano"></span> Caramelos e Cia • Conteúdo informativo. Em caso de dúvida sobre a saúde do seu pet, consulte um médico-veterinário.</small>
+    <small>© 2026 Caramelos e Cia • Conteúdo informativo. Em caso de dúvida sobre a saúde do seu pet, consulte um médico-veterinário.</small>
   </div>
 </footer>
-
 <script>
-let DADOS={config:{},posts:[]};
-let catAtual="Todas";
-const $=s=>document.querySelector(s);
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const fmtData=d=>{try{return new Date(d+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"})}catch(e){return d}};
-const tempoLeitura=t=>Math.max(1,Math.round((t||"").split(/\s+/).length/200))+" min de leitura";
-
-function inline(s){
-  s=esc(s);
-  s=s.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>").replace(/\*(.+?)\*/g,"<em>$1</em>");
-  s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-  return s;
-}
-function md(txt){
-  const linhas=(txt||"").split("\n");let html="",lista=null;
-  const fecha=()=>{if(lista){html+=`</${lista}>`;lista=null}};
-  for(const l of linhas){
-    const t=l.trim();
-    if(!t){fecha();continue}
-    let m;
-    if(m=t.match(/^###\s+(.*)/)){fecha();html+=`<h3>${inline(m[1])}</h3>`}
-    else if(m=t.match(/^##\s+(.*)/)){fecha();html+=`<h2>${inline(m[1])}</h2>`}
-    else if(m=t.match(/^>\s?(.*)/)){fecha();html+=`<blockquote>${inline(m[1])}</blockquote>`}
-    else if(m=t.match(/^[-*]\s+(.*)/)){if(lista!=="ul"){fecha();html+="<ul>";lista="ul"}html+=`<li>${inline(m[1])}</li>`}
-    else if(m=t.match(/^\d+[.)]\s+(.*)/)){if(lista!=="ol"){fecha();html+="<ol>";lista="ol"}html+=`<li>${inline(m[1])}</li>`}
-    else if(m=t.match(/^@produto\s+(.*)/)){fecha();html+=produto(m[1])}
-    else if(m=t.match(/^!\[([^\]]*)\]\(([^)\s]+)\)/)){fecha();html+=`<figure class="capa-art"><img src="${esc(m[2])}" alt="${esc(m[1])}" loading="lazy"></figure>`}
-    else{fecha();html+=`<p>${inline(t)}</p>`}
-  }
-  fecha();return html;
-}
-
-const ICO_SACOLA='<svg viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
-function produto(txt){
-  const [nome,desc,url,img,preco]=txt.split("|").map(x=>(x||"").trim());
-  if(!/^https?:\/\//.test(url||""))return "";
-  return `<div class="produto"><div class="pimg">${img?`<img src="${esc(img)}" alt="${esc(nome)}" loading="lazy">`:ICO_SACOLA}</div>
-    <div class="pinfo"><strong>${esc(nome)}</strong><span>${esc(desc)}</span>${preco?`<span class="preco">${esc(preco)}</span>`:""}</div>
-    <a class="btn" href="${esc(url)}" target="_blank" rel="sponsored noopener">Ver oferta</a></div>`;
-}
-function card(p){
-  const capa=p.capa?`<img src="${esc(p.capa)}" alt="" loading="lazy">`:`<img class="sem" src="img/icone.png" alt="">`;
-  return `<a class="card" href="#${esc(p.slug)}">
-    <div class="capa">${capa}</div>
-    <div class="corpo">
-      <div class="meta"><span class="cat">${esc(p.categoria||"Dicas")}</span><span>${fmtData(p.data)}</span></div>
-      <h3>${esc(p.titulo)}</h3>
-      <p>${esc(p.resumo)}</p>
-      <span class="leia">Ler artigo →</span>
-    </div></a>`;
-}
-const ordenados=()=>[...DADOS.posts].sort((a,b)=>(b.data||"").localeCompare(a.data||""));
-const vazio='<div class="vazio">Novos artigos chegando em breve 🐾</div>';
-
-function renderUltimos(){const l=ordenados().slice(0,3);$("#ultimos").innerHTML=l.length?l.map(card).join(""):vazio}
-function renderBlog(){
-  const cats=["Todas",...new Set(DADOS.posts.map(p=>p.categoria||"Dicas"))];
-  $("#filtros").innerHTML=cats.length>2?cats.map(c=>`<button class="${c===catAtual?"on":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join(""):"";
-  const q=($("#busca").value||"").toLowerCase();
-  const l=ordenados().filter(p=>(catAtual==="Todas"||(p.categoria||"Dicas")===catAtual)&&(!q||(p.titulo+" "+p.resumo+" "+p.corpo).toLowerCase().includes(q)));
-  $("#todos").innerHTML=l.length?l.map(card).join(""):(DADOS.posts.length?'<div class="vazio">Nenhum artigo encontrado.</div>':vazio);
-}
-function renderArtigo(p){
-  const of=linkOfertas();
-  $("#artigo").innerHTML=`<a class="voltar" href="#blog">← Voltar para o blog</a><br>
-    <span class="tag">${esc(p.categoria||"Dicas")}</span>
-    <h1>${esc(p.titulo)}</h1>
-    <p class="sub">${esc(p.resumo)}</p>
-    <p class="card meta" style="border:0;flex-direction:row;color:var(--cinza);font-size:.9rem;margin:-14px 0 26px">${fmtData(p.data)} • ${tempoLeitura(p.corpo)}</p>
-    ${p.capa?`<div class="capa-art"><img src="${esc(p.capa)}" alt=""></div>`:""}
-    ${p.afiliado?'<p class="aviso-afiliado">Este artigo contém links de afiliado. Se você comprar por eles, a Caramelos e Cia pode receber uma pequena comissão, sem nenhum custo extra para você. Os preços e as condições podem mudar a qualquer momento: confira sempre na loja.</p>':""}
-    <div class="texto">${md(p.corpo)}</div>
-    <div class="cta-art"><div><h3>Curtiu? Economize com o seu pet também.</h3><p>Entre no nosso grupo de ofertas.</p></div>
-    <a class="btn preto" ${of?`href="${esc(of)}" target="_blank" rel="noopener"`:'href="#ofertas"'}>Entrar no grupo</a></div>`;
-  document.title=p.titulo+" | Caramelos e Cia";
-}
-const linkOfertas=()=>(DADOS.config.ofertas_url||"").trim();
-function aplicarConfig(){
-  const c=DADOS.config,u=linkOfertas();
-  if(c.slogan)$("#slogan").textContent=c.slogan;
-  document.querySelectorAll("[data-ofertas-link]").forEach(a=>{
-    if(u){a.href=u;a.target="_blank";a.rel="noopener"}
-    else{a.href="#ofertas"}
-  });
-  const nav=$("[data-ofertas-nav]");if(nav){if(u){nav.href=u;nav.target="_blank";nav.rel="noopener"}}
-  $("#nota-ofertas").textContent=u?(c.ofertas_plataforma?`Grupo no ${c.ofertas_plataforma}. É grátis e você sai quando quiser.`:"É grátis e você sai quando quiser."):"O link do grupo será liberado em breve!";
-}
-
-function rota(){
-  const h=decodeURIComponent((location.hash||"").slice(1))||"inicio";
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));
-  document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("ativo",a.dataset.nav===h));
-  document.title="Caramelos e Cia";
-  if(h==="blog"){$("#v-blog").classList.add("on");renderBlog();window.scrollTo(0,0)}
-  else if(h==="ofertas"){$("#v-inicio").classList.add("on");setTimeout(()=>$("#ofertas-sec").scrollIntoView({behavior:"smooth"}),30)}
-  else{
-    const p=DADOS.posts.find(x=>x.slug===h);
-    if(p){$("#v-artigo").classList.add("on");renderArtigo(p);window.scrollTo(0,0)}
-    else{$("#v-inicio").classList.add("on");if(h==="inicio")window.scrollTo(0,0)}
-  }
-}
-$("#filtros").addEventListener("click",e=>{const b=e.target.closest("button");if(b){catAtual=b.dataset.cat;renderBlog()}});
-$("#busca").addEventListener("input",renderBlog);
-window.addEventListener("hashchange",rota);
-$("#ano").textContent=new Date().getFullYear();
-
-fetch("conteudo.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{DADOS={config:d.config||{},posts:d.posts||[]}}).catch(()=>{}).finally(()=>{aplicarConfig();renderUltimos();rota()});
+(function(){var h=decodeURIComponent((location.hash||"").slice(1));var s=["por-que-meu-gato-mia-tanto", "calor-e-verao-como-proteger-o-pet", "black-friday-pet-guia-de-compras"];
+if(h==="blog")location.replace("/blog/");else if(s.indexOf(h)>-1)location.replace("/blog/"+h+"/");})();
 </script>
 </body>
 </html>
