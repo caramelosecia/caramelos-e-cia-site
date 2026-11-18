@@ -10,9 +10,17 @@ import json
 import os
 import re
 
+try:
+    from PIL import Image
+except ImportError:  # sem Pillow, o site sai sem as versões menores
+    Image = None
+
 SITE = "https://caramelosecia.com"
 NOME = "Caramelos e Cia"
 RAIZ = os.path.dirname(os.path.abspath(__file__))
+FONTES = "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap"
+with open(os.path.join(RAIZ, "assets", "site.css"), encoding="utf-8") as _f:
+    CSS = re.sub(r"\s*\n\s*", "", _f.read())
 PINTEREST = '<meta name="p:domain_verify" content="e2b6eca343b0e595d32aaa3747913422"/>'
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
@@ -31,6 +39,43 @@ def img_url(caminho):
     if not caminho:
         return ""
     return caminho if caminho.startswith(("http", "/")) else "/" + caminho
+
+
+LARGURAS = (480, 800, 1200)
+
+
+def variantes(caminho, larguras=LARGURAS):
+    """Cria versões .webp menores de uma imagem (em img/r/) e devolve (srcset, largura, altura)."""
+    rel = img_url(caminho).lstrip("/")
+    orig = os.path.join(RAIZ, rel)
+    if not Image or not os.path.exists(orig):
+        return "", None, None
+    with Image.open(orig) as im:
+        w, h = im.size
+        itens = []
+        base = os.path.splitext(os.path.basename(rel))[0]
+        for lw in larguras:
+            if lw >= w:
+                continue
+            destino = os.path.join(RAIZ, "img", "r", f"{base}-{lw}.webp")
+            if not os.path.exists(destino) or os.path.getmtime(destino) < os.path.getmtime(orig):
+                os.makedirs(os.path.dirname(destino), exist_ok=True)
+                im2 = im.convert("RGB").resize((lw, round(h * lw / w)), Image.LANCZOS)
+                im2.save(destino, "WEBP", quality=78, method=6)
+            itens.append(f"/img/r/{base}-{lw}.webp {lw}w")
+        itens.append(f"{img_url(caminho)} {w}w")
+    return ", ".join(itens), w, h
+
+
+def tag_img(caminho, sizes, alt="", lazy=True, larguras=LARGURAS, extra=""):
+    srcset, w, h = variantes(caminho, larguras)
+    attrs = f'src="{esc(img_url(caminho))}" alt="{esc(alt)}"'
+    if w:
+        attrs += f' width="{w}" height="{h}"'
+    if srcset:
+        attrs += f' srcset="{srcset}" sizes="{sizes}"'
+    attrs += ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high" decoding="async"'
+    return f"<img {attrs}{extra}>"
 
 
 def fmt_data(d):
@@ -64,7 +109,7 @@ def produto(txt):
     nome, desc, url, img, preco = partes[:5]
     if not re.match(r"^https?://", url):
         return ""
-    foto = f'<img src="{esc(img_url(img))}" alt="{esc(nome)}" loading="lazy">' if img else ICO_SACOLA
+    foto = tag_img(img, "110px", alt=nome, larguras=(240,)) if img else ICO_SACOLA
     p = f'<span class="preco">{esc(preco)}</span>' if preco else ""
     return (f'<div class="produto"><div class="pimg">{foto}</div>'
             f'<div class="pinfo"><strong>{esc(nome)}</strong><span>{esc(desc)}</span>{p}</div>'
@@ -101,7 +146,7 @@ def md(txt):
                 fecha(); out.append("<ol>"); lista = "ol"
             out.append(f"<li>{inline(m[1])}</li>")
         elif m := re.match(r"^!\[([^\]]*)\]\(([^)\s]+)\)", t):
-            fecha(); out.append(f'<figure class="capa-art"><img src="{esc(img_url(m[2]))}" alt="{esc(m[1])}" loading="lazy"></figure>')
+            fecha(); out.append(f'<figure class="capa-art">{tag_img(m[2], "(max-width: 800px) 100vw, 716px", alt=m[1])}</figure>')
         else:
             fecha(); out.append(f"<p>{inline(t)}</p>")
     fecha()
@@ -138,14 +183,16 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/img/icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="{FONTES}" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{FONTES}"></noscript>
+<style>{CSS}</style>
 {extra_head}
 </head>
 <body>
 <header>
   <div class="wrap nav">
-    <a class="marca" href="/" aria-label="Caramelos e Cia: página inicial"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
+    <a class="marca" href="/" aria-label="Caramelos e Cia: página inicial"><img src="/img/icone.png" alt="" width="46" height="46"><span>Caramelos &amp; Cia</span></a>
     <nav class="menu">
       {nav("Início", "/", "inicio")}
       {nav("Blog", "/blog/", "blog")}
@@ -158,7 +205,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
 </main>
 <footer>
   <div class="wrap rodape">
-    <a class="marca" href="/" aria-label="Caramelos e Cia: página inicial"><img src="/img/icone.png" alt=""><span>Caramelos &amp; Cia</span></a>
+    <a class="marca" href="/" aria-label="Caramelos e Cia: página inicial"><img src="/img/icone.png" alt="" width="46" height="46"><span>Caramelos &amp; Cia</span></a>
     <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
       <a href="/blog/" style="text-decoration:none">Blog</a>
       <a {of} style="text-decoration:none">Grupo de ofertas</a>
@@ -176,8 +223,8 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
 
 
 def card(p):
-    capa = (f'<img src="{esc(img_url(p["capa"]))}" alt="" loading="lazy">' if p.get("capa")
-            else '<img class="sem" src="/img/icone.png" alt="">')
+    capa = (tag_img(p["capa"], "(max-width: 700px) calc(100vw - 44px), 360px") if p.get("capa")
+            else '<img class="sem" src="/img/icone.png" alt="" width="160" height="160" loading="lazy">')
     busca = esc((p["titulo"] + " " + p.get("resumo", "") + " " + p.get("corpo", "")).lower())
     return f"""<a class="card" href="/blog/{esc(p['slug'])}/" data-cat="{esc(p.get('categoria') or 'Dicas')}" data-busca="{busca}">
   <div class="capa">{capa}</div>
@@ -213,7 +260,7 @@ def home(cfg, posts):
           <a class="btn preto" href="/blog/">Ler o blog</a>
         </div>
       </div>
-      <img class="hero-logo" src="/img/logo.png" alt="Logo Caramelos e Cia">
+      <img class="hero-logo" src="/img/logo.png" alt="Logo Caramelos e Cia" width="480" height="480" fetchpriority="high" decoding="async">
     </div>
   </div>
 </section>
@@ -291,7 +338,7 @@ def artigo(cfg, p):
     aviso = ('<p class="aviso-afiliado">Este artigo contém links de afiliado. Se você comprar por eles, a Caramelos e Cia '
              'pode receber uma pequena comissão, sem nenhum custo extra para você. Os preços e as condições podem mudar '
              'a qualquer momento: confira sempre na loja.</p>') if p.get("afiliado") else ""
-    capa = f'<div class="capa-art"><img src="{esc(img_url(p["capa"]))}" alt=""></div>' if p.get("capa") else ""
+    capa = f'<div class="capa-art">{tag_img(p["capa"], "(max-width: 800px) 100vw, 716px", lazy=False)}</div>' if p.get("capa") else ""
     corpo = f"""<article class="artigo">
   <a class="voltar" href="/blog/">← Voltar para o blog</a><br>
   <span class="tag">{esc(p.get('categoria') or 'Dicas')}</span>
