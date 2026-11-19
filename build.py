@@ -5,6 +5,7 @@ Saída: index.html, blog/index.html, blog/<slug>/index.html, sitemap.xml, robots
 Uso: python3 build.py
 """
 import datetime
+from zoneinfo import ZoneInfo
 import html
 import json
 import os
@@ -401,14 +402,20 @@ def main():
     with open(os.path.join(RAIZ, "conteudo.json"), encoding="utf-8") as f:
         dados = json.load(f)
     cfg = dados.get("config", {})
-    posts = sorted(dados.get("posts", []), key=lambda p: p.get("data", ""), reverse=True)
+    hoje_br = datetime.datetime.now(ZoneInfo("America/Sao_Paulo")).date().isoformat()
+    todos = dados.get("posts", [])
+    agendados = [p["slug"] for p in todos if p.get("data", "") > hoje_br]
+    # artigos com data futura ficam guardados e só entram no site a partir do dia marcado
+    posts = sorted([p for p in todos if p.get("data", "") <= hoje_br], key=lambda p: p.get("data", ""), reverse=True)
+    if agendados:
+        print("Agendados (ainda não publicados):", ", ".join(agendados))
 
     salvar("index.html", home(cfg, posts))
     salvar("blog/index.html", blog(cfg, posts))
     for p in posts:
         salvar(f"blog/{p['slug']}/index.html", artigo(cfg, p, posts))
 
-    hoje = datetime.date.today().isoformat()
+    hoje = hoje_br
     ult = posts[0].get("data", hoje) if posts else hoje
     urls = [(f"{SITE}/", ult, "weekly", "1.0"), (f"{SITE}/blog/", ult, "weekly", "0.8")]
     urls += [(f"{SITE}/blog/{p['slug']}/", p.get("atualizado") or p.get("data", hoje), "monthly", "0.7") for p in posts]
