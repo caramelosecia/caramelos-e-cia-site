@@ -198,6 +198,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
     <nav class="menu">
       {nav("Início", "/", "inicio")}
       {nav("Blog", "/blog/", "blog")}
+      {nav("Sobre", "/sobre/", "sobre")}
       <a class="btn" {of}>Grupo de ofertas</a>
     </nav>
   </div>
@@ -210,6 +211,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
     <a class="marca" href="/" aria-label="Caramelos e Cia: página inicial"><img src="/img/icone.png" alt="" width="46" height="46"><span>Caramelos &amp; Cia</span></a>
     <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
       <a href="/blog/" style="text-decoration:none">Blog</a>
+      <a href="/sobre/" style="text-decoration:none">Sobre</a>
       <a {of} style="text-decoration:none">Grupo de ofertas</a>
     </div>
     <nav class="redes" aria-label="Redes sociais">
@@ -222,6 +224,32 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
 </body>
 </html>
 """
+
+
+AUTORES = {}
+AUTOR_PADRAO = ""
+
+
+def autor_de(p):
+    return AUTORES.get(p.get("autor") or AUTOR_PADRAO)
+
+
+def pessoa_ld(a):
+    return {"@type": "Person", "name": a["nome"], "url": f"{SITE}/autores/{a['slug']}/",
+            "jobTitle": a.get("cargo", ""), "image": a.get("foto", ""), "sameAs": a.get("links", [])}
+
+
+def caixa_autor(a):
+    links = " · ".join(f'<a href="{esc(u)}" target="_blank" rel="noopener me">{esc(n)}</a>'
+                       for n, u in a.get("links_nomeados", []))
+    return f"""<aside class="autor-box">
+    <img src="{esc(a['foto'])}" alt="Foto de {esc(a['nome'])}" width="96" height="96" loading="lazy">
+    <div><span class="autor-rotulo">Sobre a autora</span>
+      <h2><a href="/autores/{esc(a['slug'])}/">{esc(a['nome'])}</a></h2>
+      <p>{esc(a['bio'])}</p>
+      {f'<p class="autor-links">{links}</p>' if links else ''}
+    </div>
+  </aside>"""
 
 
 def card(p):
@@ -356,18 +384,22 @@ def artigo(cfg, p, posts):
     leia_html = ("<section class=\"leia-tambem\"><h2>Leia também</h2><ul>" + "".join(
         f'<li><a href="/blog/{esc(x["slug"])}/">{esc(x["titulo"])}</a></li>' for x in rel)
         + "</ul></section>") if rel else ""
+    a = autor_de(p)
+    byline = (f'Por <a href="/autores/{esc(a["slug"])}/" rel="author">{esc(a["nome"])}</a> • ') if a else ""
+    autor_html = caixa_autor(a) if a else ""
     corpo = f"""<article class="artigo">
   <a class="voltar" href="/blog/">← Voltar para o blog</a><br>
   <span class="tag">{esc(p.get('categoria') or 'Dicas')}</span>
   <h1>{esc(p['titulo'])}</h1>
   <p class="sub">{esc(p.get('resumo'))}</p>
-  <p class="meta-art">{fmt_data(p.get('data'))} • {tempo_leitura(p.get('corpo'))}</p>
+  <p class="meta-art">{byline}{fmt_data(p.get('data'))} • {tempo_leitura(p.get('corpo'))}</p>
   {capa}
   {aviso}
   <div class="texto">
 {md(p.get('corpo'))}
   </div>
   {fontes_html}
+  {autor_html}
   {leia_html}
   <div class="cta-art"><div><h3>Curtiu? Economize com o seu pet também.</h3><p>Entre no nosso grupo de ofertas.</p></div>
   <a class="btn preto" {of}>Entrar no grupo</a></div>
@@ -378,7 +410,7 @@ def artigo(cfg, p, posts):
         "datePublished": p.get("data"), "dateModified": p.get("atualizado") or p.get("data"),
         "mainEntityOfPage": SITE + caminho,
         "image": SITE + img_url(p["capa"]) if p.get("capa") else SITE + "/img/logo.png",
-        "author": {"@type": "Organization", "name": NOME},
+        "author": pessoa_ld(a) if a else {"@type": "Organization", "name": NOME},
         "publisher": {"@type": "Organization", "name": NOME, "logo": {"@type": "ImageObject", "url": SITE + "/img/logo.png"}},
     }
     trilha = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -389,6 +421,53 @@ def artigo(cfg, p, posts):
              f'<script type="application/ld+json">{json.dumps(trilha, ensure_ascii=False)}</script>')
     return pagina(cfg, titulo=f"{p['titulo']} | {NOME}", descricao=p.get("resumo", ""), caminho=caminho,
                   corpo=corpo, ativo="blog", imagem=p.get("capa"), tipo="article", extra_head=extra)
+
+
+def pagina_autor(cfg, a, posts):
+    seus = [p for p in posts if autor_de(p) is a]
+    cards = "\n".join(card(p) for p in seus) or VAZIO
+    links = " · ".join(f'<a href="{esc(u)}" target="_blank" rel="noopener me">{esc(n)}</a>' for n, u in a.get("links_nomeados", []))
+    corpo = f"""<section class="bloco">
+  <div class="wrap">
+    <div class="autor-topo">
+      <img src="{esc(a['foto'])}" alt="Foto de {esc(a['nome'])}" width="160" height="160">
+      <div>
+        <span class="tag">{esc(a.get('cargo', 'Autora'))}</span>
+        <h1>{esc(a['nome'])}</h1>
+        <p class="lead">{esc(a['bio'])}</p>
+        {f'<p class="autor-links">{links}</p>' if links else ''}
+      </div>
+    </div>
+    <div class="titulo-sec" style="margin-top:56px"><div><h2>Artigos de {esc(a['nome'].split()[0])}</h2></div></div>
+    <div class="grid-posts">
+{cards}
+    </div>
+  </div>
+</section>"""
+    ld = {"@context": "https://schema.org", "@type": "ProfilePage", "mainEntity": pessoa_ld(a)}
+    return pagina(cfg, titulo=f"{a['nome']} | {NOME}", descricao=a["bio"], caminho=f"/autores/{a['slug']}/",
+                  corpo=corpo, imagem=None, tipo="profile",
+                  extra_head=f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>')
+
+
+def pagina_sobre(cfg, sobre):
+    a = AUTORES.get(AUTOR_PADRAO)
+    corpo = f"""<article class="artigo">
+  <span class="tag">Sobre</span>
+  <h1>{esc(sobre['titulo'])}</h1>
+  <p class="sub">{esc(sobre['resumo'])}</p>
+  <div class="texto">
+{md(sobre['corpo'])}
+  </div>
+  {caixa_autor(a) if a else ''}
+</article>"""
+    org = {"@context": "https://schema.org", "@type": "Organization", "name": NOME, "url": SITE + "/",
+           "logo": SITE + "/img/logo.png", "foundingDate": sobre.get("fundacao", ""),
+           "sameAs": [u for _, u in REDES]}
+    if a:
+        org["founder"] = pessoa_ld(a)
+    return pagina(cfg, titulo=f"Sobre a {NOME}", descricao=sobre["resumo"], caminho="/sobre/", corpo=corpo,
+                  ativo="sobre", extra_head=f'<script type="application/ld+json">{json.dumps(org, ensure_ascii=False)}</script>')
 
 
 def salvar(rel, conteudo):
@@ -412,12 +491,24 @@ def main():
 
     salvar("index.html", home(cfg, posts))
     salvar("blog/index.html", blog(cfg, posts))
+    global AUTOR_PADRAO
+    for slug, a in (dados.get("autores") or {}).items():
+        a["slug"] = slug
+        AUTORES[slug] = a
+    AUTOR_PADRAO = cfg.get("autor_padrao", "")
+    for a in AUTORES.values():
+        salvar(f"autores/{a['slug']}/index.html", pagina_autor(cfg, a, posts))
+    if dados.get("sobre"):
+        salvar("sobre/index.html", pagina_sobre(cfg, dados["sobre"]))
     for p in posts:
         salvar(f"blog/{p['slug']}/index.html", artigo(cfg, p, posts))
 
     hoje = hoje_br
     ult = posts[0].get("data", hoje) if posts else hoje
     urls = [(f"{SITE}/", ult, "weekly", "1.0"), (f"{SITE}/blog/", ult, "weekly", "0.8")]
+    if dados.get("sobre"):
+        urls.append((f"{SITE}/sobre/", hoje, "monthly", "0.5"))
+    urls += [(f"{SITE}/autores/{s}/", ult, "monthly", "0.4") for s in AUTORES]
     urls += [(f"{SITE}/blog/{p['slug']}/", p.get("atualizado") or p.get("data", hoje), "monthly", "0.7") for p in posts]
     sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, mod, freq, pri in urls:

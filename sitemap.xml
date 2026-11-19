@@ -13,6 +13,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://caramelosecia.com/sobre/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://caramelosecia.com/autores/sara-marques-amorim/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://caramelosecia.com/blog/cachorro-dorme-em-cima-do-dono/</loc>
     <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>

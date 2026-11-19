@@ -9,6 +9,11 @@ Site estático publicado na Hostinger (deploy automático a partir do ramo `main
 3. Rode `python3 build.py`: ele gera `index.html`, `blog/index.html`, `blog/<slug>/index.html`, `sitemap.xml` e `robots.txt`.
 4. Faça commit de tudo e envie para o `main`.
 
+## Autoria e página Sobre
+
+- Os autores ficam em `autores` no `conteudo.json` (nome, cargo, bio, foto e links). Cada artigo usa o `autor` informado ou, se não tiver, o `config.autor_padrao`.
+- A página `/sobre/` é gerada a partir de `sobre` no `conteudo.json`.
+
 ## Formato do `corpo`
 
 - `## Título` e `### Subtítulo`

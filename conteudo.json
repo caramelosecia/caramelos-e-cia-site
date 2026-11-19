@@ -3,7 +3,8 @@
     "ofertas_url": "https://chat.whatsapp.com/HDrr5d6y5yf9t6T0od8NXV",
     "ofertas_plataforma": "WhatsApp",
     "instagram_url": "",
-    "slogan": "Informação, dicas e curiosidades para quem ama bicho."
+    "slogan": "Informação, dicas e curiosidades para quem ama bicho.",
+    "autor_padrao": "sara-marques-amorim"
   },
   "posts": [
     {
@@ -138,5 +139,38 @@
         }
       ]
     }
-  ]
+  ],
+  "autores": {
+    "sara-marques-amorim": {
+      "nome": "Sara Marques Amorim",
+      "cargo": "Publicitária, redatora e fundadora da Caramelos e Cia",
+      "bio": "Publicitária e redatora, apaixonada por comunicação, informação e escrita. Gosta de transformar ideias em conteúdos claros, interessantes e relevantes. Mãe de 5 cachorros, 6 cavalos e 3 jumentos, a maioria resgatados, e ativista da causa animal. Criou a Caramelos e Cia em 2022 para compartilhar o que aprende estudando a fundo sobre os bichos.",
+      "foto": "https://2.gravatar.com/avatar/63d956ff6b3c726bd34a020a5595e4d007526623e1f500ca32404b8faa6a36b1?size=320&d=initials",
+      "links": [
+        "https://gravatar.com/saramarquesamo",
+        "https://www.linkedin.com/in/saramarquesamo",
+        "https://www.instagram.com/caramelosecia"
+      ],
+      "links_nomeados": [
+        [
+          "Gravatar",
+          "https://gravatar.com/saramarquesamo"
+        ],
+        [
+          "LinkedIn",
+          "https://www.linkedin.com/in/saramarquesamo"
+        ],
+        [
+          "Instagram da Caramelos e Cia",
+          "https://www.instagram.com/caramelosecia"
+        ]
+      ]
+    }
+  },
+  "sobre": {
+    "titulo": "Sobre a Caramelos e Cia",
+    "fundacao": "2022",
+    "resumo": "Conheça a Caramelos e Cia: informação, dicas e curiosidades sobre cães, gatos e outros bichos, feitas com cuidado por quem vive a causa animal.",
+    "corpo": "A **Caramelos e Cia** nasceu em 2022 de uma paixão antiga: estudar os bichos. A ideia é simples: transformar o que dizem os artigos, pesquisas e profissionais da área em conteúdo claro, útil e gostoso de ler, para quem divide a vida com cães, gatos e outros animais.\n\nO nome é uma homenagem ao vira-lata caramelo, símbolo dos cães brasileiros, e o \"e Cia\" abre espaço para todos os outros: gatos, cavalos, jumentos, aves e quem mais fizer parte da família.\n\n## Quem está por trás\n\nA Caramelos e Cia é criada e escrita por **[Sara Marques Amorim](/autores/sara-marques-amorim/)**, publicitária e redatora, mãe de 5 cachorros, 6 cavalos e 3 jumentos (a maioria resgatados) e ativista da causa animal. A rotina com tantos bichos é, ao mesmo tempo, inspiração e laboratório para muitas das dúvidas que viram conteúdo por aqui.\n\n## Como produzimos o conteúdo\n\n- **Pesquisa a fundo:** cada artigo é escrito a partir de fontes confiáveis, como associações veterinárias, órgãos oficiais e materiais de profissionais da área. As principais fontes aparecem no fim de cada texto.\n- **Responder dúvidas reais:** os temas nascem das perguntas que os tutores mais fazem, inclusive nas buscas do Google.\n- **Saúde em primeiro lugar:** nos assuntos de saúde, o conteúdo informa, mas não substitui a consulta. Sempre que um sinal pede atenção, orientamos a procurar o médico-veterinário.\n- **Atualização:** quando aprendemos algo novo ou uma informação muda, revisamos o texto.\n\n## Transparência\n\nAlguns artigos trazem links de afiliado: se você comprar por eles, a Caramelos e Cia pode receber uma pequena comissão, sem nenhum custo extra para você. Isso ajuda a manter o projeto. Só indicamos produtos que fazem sentido para o tema do artigo, e todo texto com esses links mostra um aviso no início.\n\nTambém temos um [grupo de ofertas no WhatsApp](https://chat.whatsapp.com/HDrr5d6y5yf9t6T0od8NXV), onde compartilhamos promoções de produtos para pets.\n\n## Fale com a gente\n\nAcompanhe e mande sua dúvida pelas nossas redes: [Instagram](https://www.instagram.com/caramelosecia), [TikTok](https://www.tiktok.com/@carameloscia), [YouTube](https://www.youtube.com/@carameloscia), [Pinterest](https://br.pinterest.com/carameloscia) e [X](https://x.com/caramelosecia). Sua pergunta pode virar o próximo artigo! 🐾"
+  }
 }
