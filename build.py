@@ -199,7 +199,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
       {nav("Início", "/", "inicio")}
       {nav("Blog", "/blog/", "blog")}
       {nav("Sobre", "/sobre/", "sobre")}
-      <a class="btn" {of}>Grupo de ofertas</a>
+      <a class="btn" {of} aria-label="Grupo de ofertas"><span class="txt-longo">Grupo de ofertas</span><span class="txt-curto">Ofertas</span></a>
     </nav>
   </div>
 </header>
