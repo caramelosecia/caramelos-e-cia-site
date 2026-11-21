@@ -32,6 +32,7 @@ Todo artigo novo deve ter:
 - `titulo` único e claro e `resumo` de 1 ou 2 frases (vira a meta description).
 - `slug` com palavras que descrevem o tema (vira o endereço `/blog/<slug>/`).
 - `alt_capa`: texto alternativo curto que descreve a foto da capa.
+- `credito_capa` (opcional): `{"texto": "Nome do autor / banco", "url": "link da foto"}` aparece embaixo da capa.
 - Pelo menos 1 link interno no texto para outro artigo do blog, com texto âncora descritivo (`[texto](/blog/slug/)`). O bloco "Leia também" é gerado automaticamente.
 - `fontes`: 1 a 3 links externos confiáveis (órgãos oficiais, associações veterinárias, Procon etc.).
 - Subtítulos `##` organizando o texto, conteúdo original e sem repetição forçada de palavras-chave.

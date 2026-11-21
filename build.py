@@ -376,6 +376,11 @@ def artigo(cfg, p, posts):
              'pode receber uma pequena comissão, sem nenhum custo extra para você. Os preços e as condições podem mudar '
              'a qualquer momento: confira sempre na loja.</p>') if p.get("afiliado") else ""
     capa = f'<div class="capa-art">{tag_img(p["capa"], "(max-width: 800px) 100vw, 716px", alt=p.get("alt_capa") or p["titulo"], lazy=False)}</div>' if p.get("capa") else ""
+    cred = p.get("credito_capa")
+    if capa and cred:
+        txt = esc(cred.get("texto", ""))
+        capa += (f'<p class="credito-capa">Imagem: <a href="{esc(cred["url"])}" target="_blank" rel="nofollow noopener">{txt}</a></p>'
+                 if cred.get("url") else f'<p class="credito-capa">Imagem: {txt}</p>')
     fontes = p.get("fontes") or []
     fontes_html = ("<section class=\"fontes\"><h2>Fontes e leitura recomendada</h2><ul>" + "".join(
         f'<li><a href="{esc(f["url"])}" target="_blank" rel="noopener">{esc(f["titulo"])}</a></li>' for f in fontes)
