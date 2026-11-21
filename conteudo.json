@@ -204,7 +204,8 @@
       "credito_capa": {
         "texto": "Magnific (Freepik)",
         "url": "https://www.magnific.com/br"
-      }
+      },
+      "posicao_capa": "center 62%"
     },
     {
       "slug": "arvore-de-natal-segura-para-pets",
@@ -229,7 +230,8 @@
       "credito_capa": {
         "texto": "Magnific (Freepik)",
         "url": "https://www.magnific.com/br/fotos-gratis/pug-com-chifres-de-veado-cachorro-feliz-cao-pug-de-natal-espirito-de-natal-um-cachorro-no-apartamento_11043835.htm"
-      }
+      },
+      "posicao_capa": "center 62%"
     }
   ],
   "autores": {

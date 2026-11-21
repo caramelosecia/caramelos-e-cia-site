@@ -68,7 +68,7 @@ def variantes(caminho, larguras=LARGURAS):
     return ", ".join(itens), w, h
 
 
-def tag_img(caminho, sizes, alt="", lazy=True, larguras=LARGURAS, extra=""):
+def tag_img(caminho, sizes, alt="", lazy=True, larguras=LARGURAS, extra="", posicao=""):
     srcset, w, h = variantes(caminho, larguras)
     attrs = f'src="{esc(img_url(caminho))}" alt="{esc(alt)}"'
     if w:
@@ -76,6 +76,8 @@ def tag_img(caminho, sizes, alt="", lazy=True, larguras=LARGURAS, extra=""):
     if srcset:
         attrs += f' srcset="{srcset}" sizes="{sizes}"'
     attrs += ' loading="lazy" decoding="async"' if lazy else ' fetchpriority="high" decoding="async"'
+    if posicao:
+        attrs += f' style="object-position:{esc(posicao)}"'
     return f"<img {attrs}{extra}>"
 
 
@@ -253,7 +255,7 @@ def caixa_autor(a):
 
 
 def card(p):
-    capa = (tag_img(p["capa"], "(max-width: 700px) calc(100vw - 44px), 360px", alt=p.get("alt_capa") or p["titulo"]) if p.get("capa")
+    capa = (tag_img(p["capa"], "(max-width: 700px) calc(100vw - 44px), 360px", alt=p.get("alt_capa") or p["titulo"], posicao=p.get("posicao_capa", "")) if p.get("capa")
             else '<img class="sem" src="/img/icone.png" alt="" width="160" height="160" loading="lazy">')
     busca = esc((p["titulo"] + " " + p.get("resumo", "") + " " + p.get("corpo", "")).lower())
     return f"""<a class="card" href="/blog/{esc(p['slug'])}/" data-cat="{esc(p.get('categoria') or 'Dicas')}" data-busca="{busca}">
@@ -375,7 +377,7 @@ def artigo(cfg, p, posts):
     aviso = ('<p class="aviso-afiliado">Este artigo contém links de afiliado. Se você comprar por eles, a Caramelos e Cia '
              'pode receber uma pequena comissão, sem nenhum custo extra para você. Os preços e as condições podem mudar '
              'a qualquer momento: confira sempre na loja.</p>') if p.get("afiliado") else ""
-    capa = f'<div class="capa-art">{tag_img(p["capa"], "(max-width: 800px) 100vw, 716px", alt=p.get("alt_capa") or p["titulo"], lazy=False)}</div>' if p.get("capa") else ""
+    capa = f'<div class="capa-art">{tag_img(p["capa"], "(max-width: 800px) 100vw, 716px", alt=p.get("alt_capa") or p["titulo"], lazy=False, posicao=p.get("posicao_capa", ""))}</div>' if p.get("capa") else ""
     cred = p.get("credito_capa")
     if capa and cred:
         txt = esc(cred.get("texto", ""))
