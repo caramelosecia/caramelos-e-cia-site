@@ -219,7 +219,7 @@ def pagina(cfg, *, titulo, descricao, caminho, corpo, ativo="", imagem="", tipo=
     <nav class="redes" aria-label="Redes sociais">
       {redes}
     </nav>
-    <small>© {datetime.date.today().year} Caramelos e Cia • Conteúdo informativo. Em caso de dúvida sobre a saúde do seu pet, consulte um médico-veterinário.</small>
+    <small>© {datetime.date.today().year} Caramelos e Cia{(" • CNPJ: " + esc(cfg.get("cnpj"))) if cfg.get("cnpj") else ""} • Conteúdo informativo. Em caso de dúvida sobre a saúde do seu pet, consulte um médico-veterinário.</small>
   </div>
 </footer>
 {scripts}
@@ -471,6 +471,8 @@ def pagina_sobre(cfg, sobre):
     org = {"@context": "https://schema.org", "@type": "Organization", "name": NOME, "url": SITE + "/",
            "logo": SITE + "/img/logo.png", "foundingDate": sobre.get("fundacao", ""),
            "sameAs": [u for _, u in REDES]}
+    if cfg.get("cnpj"):
+        org["taxID"] = cfg["cnpj"]
     if a:
         org["founder"] = pessoa_ld(a)
     return pagina(cfg, titulo=f"Sobre a {NOME}", descricao=sobre["resumo"], caminho="/sobre/", corpo=corpo,
